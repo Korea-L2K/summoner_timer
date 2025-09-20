@@ -5,7 +5,7 @@ import { Server } from "socket.io";
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  cors: { origin: "https://your-frontend.vercel.app" } // update later
+  cors: { origin: "https://summoner_timer.vercel.app" } // update later
 });
 
 const rooms = {};

@@ -1,5 +1,5 @@
 {
-  "name": "synced-timer-backend",
+  "name": "summoner-timer-backend",
   "type": "module",
   "dependencies": {
     "express": "^4.18.2",
