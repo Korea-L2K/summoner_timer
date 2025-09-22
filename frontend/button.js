@@ -5,6 +5,11 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   let timerInterval = null;
   let totalSeconds = 0;
   const id = btn.dataset;
+  const reset = () => {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      btn.textContent = 'Flash';
+  };
   const updateText = () => {
     const min = Math.floor(totalSeconds / 60);
     const sec = totalSeconds % 60;
@@ -23,9 +28,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
   socket.on('reset-timer', (data) => {
     if (data.id === id) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      btn.textContent = 'Flash';
+      reset();
     }
   });
   socket.on('start-timer', (data) => {

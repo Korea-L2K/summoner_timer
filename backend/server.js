@@ -17,7 +17,7 @@ io.on('connection', socket => {
     io.emit('start-timer', data);
   });
   
-  socket.on('reset-time', (data) => {
+  socket.on('reset-timer', (data) => {
     console.log(data.id);
     io.emit('reset-timer', data);
   });
