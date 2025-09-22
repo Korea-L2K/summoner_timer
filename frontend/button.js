@@ -28,11 +28,6 @@ document.querySelectorAll('.timer-button').forEach(btn => {
     socket.emit('start-timer', { id, end: Date.now() + remaining * 1000 });
   });
 
-  socket.on('reset-timer', (data) => {
-    if (data.id === id) {
-      reset();
-    }
-  });
   socket.on('start-timer', (data) => {
     if (data.id === id) {
       remaining = (data.end - Date.now()) / 1000;
@@ -45,6 +40,11 @@ document.querySelectorAll('.timer-button').forEach(btn => {
           updateText();
         }
       }, 1000);
+    }
+  });
+  socket.on('reset-timer', (data) => {
+    if (data.id === id) {
+      reset();
     }
   });
 });
