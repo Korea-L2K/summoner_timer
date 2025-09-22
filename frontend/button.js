@@ -30,6 +30,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   });
   socket.on('start-timer', (data) => {
     if (data.id === id) {
+      totalSeconds = data.totalSeconds;
       updateText();
       timerInterval = setInterval(() => {
         totalSeconds--;
