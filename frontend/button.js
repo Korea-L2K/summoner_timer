@@ -1,5 +1,5 @@
 const lucidity = document.getElementById('lucidity');
-const socket = io('https://summoner-timer.onrender.com');
+const socket = window.socket;
 
 document.querySelectorAll('.timer-button').forEach(btn => {
   let timerInterval = null;

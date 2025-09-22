@@ -1,1 +1,1 @@
-const socket = io('https://summoner-timer.onrender.com');
+window.socket = io('https://summoner-timer.onrender.com');
