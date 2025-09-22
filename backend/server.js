@@ -3,14 +3,16 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 
 const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, {
+const server = createServer(app);
+const io = new Server(server, {
   cors: { origin: "https://summoner-timer.vercel.app" }
 });
 
 const rooms = {};
 
 io.on("connection", socket => {
+  console.log("user connected");
+
   socket.on("join", room => {
     socket.join(room);
     if (rooms[room]?.start) socket.emit("start", rooms[room].start);
@@ -21,7 +23,11 @@ io.on("connection", socket => {
     rooms[room] = { start };
     io.to(room).emit("start", start);
   });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
 });
 
 const PORT = process.env.PORT || 3000;
-httpServer.listen(PORT, () => console.log(`Backend on ${PORT}`));
+server.listen(PORT, () => console.log(`Backend on ${PORT}`));

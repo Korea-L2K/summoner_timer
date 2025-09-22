@@ -2,8 +2,8 @@
   "name": "summoner-timer-backend",
   "type": "module",
   "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.6.1"
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
   },
   "scripts": {
     "start": "node server.js"
