@@ -37,7 +37,9 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   });
 
   socket.on('update-timer', (data) => {
-    totalSeconds = data.totalSeconds;
-    updateText();
+    if(data.id === id) {
+      totalSeconds = data.totalSeconds;
+      updateText();
+    }
   });
 });
