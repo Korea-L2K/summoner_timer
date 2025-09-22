@@ -4,23 +4,24 @@
   <title>Summoner Spell Timer</title>
 </head>
 <body>
-  <input id="room" placeholder="Room code">
-  <button id="joinBtn">Join</button>
-  <button id="startBtn">Start</button>
-  <h1 id="timer">0.0</h1>
+  <input id='room' placeholder='Room code'>
+  <button id='joinBtn'>Join</button>
+  <button id='startBtn'>Start</button>
+  <h1 id='timer'>0.0</h1>
 
-  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script src='https://cdn.socket.io/4.8.1/socket.io.min.js'></script>
   <script>
-    const socket = io("https://summoner-timer.onrender.com"); // update after deploy
+    const socket = io('https://summoner-timer.onrender.com');
     let start = null;
 
     joinBtn.onclick = () => {
+      console.log('join')
       const room = roomInput.value;
-      socket.emit("join", room);
-      startBtn.onclick = () => socket.emit("startTimer", room);
+      socket.emit('join', room);
+      startBtn.onclick = () => socket.emit('startTimer', room);
     };
 
-    socket.on("start", s => start = s);
+    socket.on('start', s => start = s);
     setInterval(() => {
       if (start) timer.innerText = ((Date.now() - start) / 1000).toFixed(1);
     }, 100);
