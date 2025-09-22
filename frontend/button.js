@@ -4,7 +4,7 @@ const socket = window.socket;
 document.querySelectorAll('.timer-button').forEach(btn => {
   let timerInterval = null;
   let totalSeconds = 0;
-  const id = btn.dataset;
+  const id = btn.dataset.id;
   const reset = () => {
       clearInterval(timerInterval);
       timerInterval = null;
