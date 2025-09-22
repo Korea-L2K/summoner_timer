@@ -12,6 +12,8 @@ io.on('connection', socket => {
   console.log('user connected');
 
   socket.on('start-timer', (data) => {
+    console.log(data.id);
+    console.log(data.totalSeconds);
     io.emit('update-timer', {data});
   });
 
