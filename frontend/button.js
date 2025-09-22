@@ -24,22 +24,18 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
     totalSeconds = 10;
     socket.emit('start-timer', { id, totalSeconds });
-    updateText();
-
-    timerInterval = setInterval(() => {
-      totalSeconds--;
-      if (totalSeconds <= 0) {
-        reset();
-      } else {
-        updateText();
-      }
-    }, 1000);
   });
 
   socket.on('update-timer', (data) => {
-    if(data.id === id) {
-      totalSeconds = data.totalSeconds;
-      updateText();
+    if (data.id === id) {
+      timerInterval = setInterval(() => {
+        totalSeconds--;
+        if (totalSeconds <= 0) {
+          reset();
+        } else {
+          updateText();
+        }
+      }, 1000);
     }
   });
 });
