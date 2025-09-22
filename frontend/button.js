@@ -1,4 +1,4 @@
-const lucidity = document.getElementById('lucidity');
+// const lucidity = document.getElementById('lucidity');
 const socket = window.socket;
 
 document.querySelectorAll('.timer-button').forEach(btn => {
@@ -24,6 +24,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
     totalSeconds = 10;
     socket.emit('start-timer', { id, totalSeconds });
+    updateText();
   });
 
   socket.on('update-timer', (data) => {
