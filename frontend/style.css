@@ -1,37 +1,49 @@
-/* Player container stacked vertically */
+✅ CSS
+/* Dark blue page background */
+body {
+  background-color: #0b1a3d;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Player container: row layout */
 .player {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #1a1a2e;
   padding: 15px;
-  margin: 15px auto;
+  margin-bottom: 20px;
   border-radius: 12px;
-  max-width: 400px;
-  color: white;
+  width: 450px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  font-family: 'Segoe UI', sans-serif;
 }
 
 /* Timer buttons horizontally spaced */
 .timers {
   display: flex;
-  gap: 10px; /* space between timer buttons */
+  gap: 15px;
 }
 
 /* Toggle buttons stacked vertically */
 .toggles {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* space between toggle buttons */
+  gap: 10px;
 }
 
-/* Timer buttons styling */
+/* Timer buttons style */
 .timer-button {
-  padding: 12px 20px;
-  font-size: 16px;
+  width: 80px;
+  height: 80px;
+  font-size: 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #4a69bd;
   color: white;
   cursor: pointer;
@@ -42,12 +54,13 @@
   transform: translateY(-2px);
 }
 
-/* Toggle buttons styling */
+/* Toggle buttons style (smaller) */
 .toggle {
-  padding: 6px 10px; /* roughly half the size of timer buttons */
+  width: 50px;
+  height: 35px;
   font-size: 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   background: #60a3bc;
   color: white;
   cursor: pointer;
