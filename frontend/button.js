@@ -24,11 +24,11 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
     totalSeconds = 10;
     socket.emit('start-timer', { id, totalSeconds });
-    updateText();
   });
 
   socket.on('update-timer', (data) => {
     if (data.id === id) {
+      updateText();
       timerInterval = setInterval(() => {
         totalSeconds--;
         if (totalSeconds <= 0) {
