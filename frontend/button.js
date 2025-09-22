@@ -3,12 +3,12 @@ const socket = window.socket;
 
 document.querySelectorAll('.timer-button').forEach(btn => {
   let timerInterval = null;
-  let totalSeconds = 0;
+  let base = 10, haste = 0;
   const id = btn.dataset.id;
   const reset = () => {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      btn.textContent = 'Flash';
+    clearInterval(timerInterval);
+    timerInterval = null;
+    btn.textContent = 'Flash';
   };
   const updateText = () => {
     const min = Math.floor(totalSeconds / 60);
@@ -22,7 +22,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       return;
     }
 
-    totalSeconds = 10;
+    totalSeconds = base * (100 / (100 + haste));
     socket.emit('start-timer', { id, totalSeconds });
   });
 

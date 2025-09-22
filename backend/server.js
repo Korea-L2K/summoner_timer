@@ -5,7 +5,8 @@ import { Server } from 'socket.io';
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { origin: 'https://summoner-timer.vercel.app' }
+  cors: { origin: 'https://summoner-timer.vercel.app' },
+  connectionStateRecovery: {}
 });
 
 io.on('connection', socket => {
