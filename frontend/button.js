@@ -14,7 +14,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   };
   const updateText = () => {
     const min = Math.floor(remaining / 60);
-    const sec = remaining % 60;
+    const sec = Math.floor(remaining) % 60;
     btn.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
   };
 
