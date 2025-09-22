@@ -12,13 +12,11 @@
   <script src='https://cdn.socket.io/4.8.1/socket.io.min.js'></script>
   <script>
     const socket = io('https://summoner-timer.onrender.com');
-    let start = null;
+    const button = document.getElementById('joinBtn');
 
     joinBtn.onclick = () => {
       console.log('join')
-      const room = roomInput.value;
-      socket.emit('join', room);
-      startBtn.onclick = () => socket.emit('startTimer', room);
+      socket.emit('join');
     };
 
     socket.on('start', s => start = s);
