@@ -28,7 +28,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
     timerInterval = setInterval(() => {
       totalSeconds--;
-      if (totalSeconds < 0) {
+      if (totalSeconds <= 0) {
         reset();
       } else {
         updateText();
@@ -36,8 +36,8 @@ document.querySelectorAll('.timer-button').forEach(btn => {
     }, 1000);
   });
 
-  socket.on(`update-timer-${timerId}`, remaining => {
-    totalSeconds = remaining;
+  socket.on('update-timer', (data) => {
+    totalSeconds = data.totalSeconds;
     updateText();
   });
 });

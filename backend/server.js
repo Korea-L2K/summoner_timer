@@ -8,20 +8,11 @@ const io = new Server(server, {
   cors: { origin: 'https://summoner-timer.vercel.app' }
 });
 
-const rooms = {};
-
 io.on('connection', socket => {
   console.log('user connected');
 
-  socket.on('join', room => {
-    socket.join(room);
-    if (rooms[room]?.start) socket.emit('start', rooms[room].start);
-  });
-
-  socket.on('startTimer', room => {
-    const start = Date.now();
-    rooms[room] = { start };
-    io.to(room).emit('start', start);
+  socket.on('start-timer', (data) => {
+    io.emit('update-timer', {data});
   });
 
   socket.on('disconnect', () => {
