@@ -14,7 +14,12 @@ io.on('connection', socket => {
   socket.on('start-timer', (data) => {
     console.log(data.id);
     console.log(data.totalSeconds);
-    io.emit('update-timer', {data});
+    io.emit('start-timer', data);
+  });
+  
+  socket.on('reset-time', (data) => {
+    console.log(data.id);
+    io.emit('reset-timer', data);
   });
 
   socket.on('disconnect', () => {
