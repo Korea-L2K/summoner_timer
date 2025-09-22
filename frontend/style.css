@@ -9,7 +9,7 @@ body {
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-.square-button {
+.timer-button {
   width: 220px;
   height: 220px;
   background-color: #1e90ff;
@@ -29,11 +29,11 @@ body {
     box-shadow 0.25s ease;
 }
 
-.square-button:hover {
+.timer-button:hover {
   background-color: #187bcd;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
-.square-button:active {
+.timer-button:active {
   transform: scale(0.96);
 }

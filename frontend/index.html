@@ -8,23 +8,12 @@
 </head>
 
 <body>
-  <input id="room" placeholder="Room code">
-  <button id="button1" class="square-button">Flash</button>
+  <button id="button1" class="timer-button">Flash</button>
+  <button id="button2" class="timer-button">Ignite</button>
 
   <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
-  <script>
-    const socket = io('https://summoner-timer.onrender.com');
-    const button1 = document.getElementById('button1');
-
-    // button1.onclick = () => {
-    //   console.log('join')
-    //   socket.emit('join');
-    // };
-
-    // setInterval(() => {
-    //   if (start) timer.innerText = ((Date.now() - start) / 1000).toFixed(1);
-    // }, 100);
-  </script>
+  <script src="button.js"></script>
+  <script src="socket.js"></script>
 </body>
 
 </html>
