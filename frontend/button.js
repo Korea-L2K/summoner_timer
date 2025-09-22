@@ -2,7 +2,7 @@ const lucidity = document.getElementById('lucidity');
 
 document.querySelectorAll('.timer-button').forEach(btn => {
   let timerInterval = null;
-  let totalSeconds = 10;
+  let totalSeconds = 0;
   const id = btn.dataset.id;
   const reset = () => {
     clearInterval(timerInterval);
@@ -21,7 +21,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       return;
     }
 
-    totalSeconds = lucidity.checked ? 240 : 300;
+    totalSeconds = 10;
     socket.emit('start-timer', { id, totalSeconds });
     updateText();
 
