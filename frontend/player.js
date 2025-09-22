@@ -1,16 +1,22 @@
 const playerContainer = document.getElementById('player-container');
 const players = ['top', 'jungle'];
+let lucidity = {}, cosmic = {};
+
 players.forEach((name, index) => {
+  lucidity[name] = false, cosmic[name] = false;
   const player = document.createElement('div');
   player.className = 'player';
   player.dataset.player = name;
 
   player.innerHTML = `
-    <h2 class="player-name">${name}</h2>
-    <button data-id="button1" class="timer-button"></button>
-    <button data-id="button2" class="timer-button"></button>
+    <button class="timer-button" data-player="${name} data-spell="d""></button>
+    <button class="timer-button" data-player="${name} data-spell="f""></button>
     <button class="lucidity"></button>
   `;
 
   playerContainer.appendChild(player);
 });
+
+export function getHaste(player) {
+  return lucidity[player] * 10 + cosmic[player] * 18;
+}
