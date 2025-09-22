@@ -1,4 +1,5 @@
 const lucidity = document.getElementById('lucidity');
+const socket = io();
 
 document.querySelectorAll('.timer-button').forEach(btn => {
   let timerInterval = null;
