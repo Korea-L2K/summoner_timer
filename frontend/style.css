@@ -1,0 +1,39 @@
+/* Page Layout */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #001f3f, #003366);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.square-button {
+  width: 220px;
+  height: 220px;
+  background-color: #1e90ff;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition:
+    background-color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+}
+
+.square-button:hover {
+  background-color: #187bcd;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.square-button:active {
+  transform: scale(0.96);
+}
