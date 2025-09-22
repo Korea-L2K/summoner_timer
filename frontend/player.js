@@ -9,9 +9,12 @@ players.forEach((name, index) => {
   player.dataset.player = name;
 
   player.innerHTML = `
-    <button class="timer-button" data-player="${name} data-spell="d""></button>
-    <button class="timer-button" data-player="${name} data-spell="f""></button>
-    <button class="lucidity"></button>
+    <button class="timer-button" data-player="${name}" data-spell="d"></button>
+    <button class="timer-button" data-player="${name}" data-spell="f"></button>
+    <div class="toggles">
+      <button class="toggle" data-player="${name}" data-spell="cosmic"></button>
+      <button class="toggle" data-player="${name}" data-spell="lucid"></button>
+    </div>
   `;
 
   playerContainer.appendChild(player);
