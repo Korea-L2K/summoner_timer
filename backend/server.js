@@ -9,15 +9,23 @@ const io = new Server(server, {
   connectionStateRecovery: {}
 });
 
+let timers = {};
+
 io.on('connection', socket => {
   console.log('user connected');
+  for (const [id, end] of Object.entries(timers)) {
+    if (Date.now() < end) {
+      socket.emit('start-timer', { id, end });
+    } else {
+      delete timers[id];
+    }
+  }
 
   socket.on('start-timer', (data) => {
-    console.log(data.id);
-    console.log(data.totalSeconds);
+    timers[data.id] = data.end;
     io.emit('start-timer', data);
   });
-  
+
   socket.on('reset-timer', (data) => {
     console.log(data.id);
     io.emit('reset-timer', data);

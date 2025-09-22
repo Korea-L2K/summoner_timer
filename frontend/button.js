@@ -2,17 +2,19 @@
 const socket = window.socket;
 
 document.querySelectorAll('.timer-button').forEach(btn => {
-  let timerInterval = null;
-  let base = 10, haste = 0;
   const id = btn.dataset.id;
+  const player = btn.dataset.player;
+  let timerInterval = null;
+  let base = 10, haste = 10;
+  let remaining = base;
   const reset = () => {
     clearInterval(timerInterval);
     timerInterval = null;
-    btn.textContent = 'Flash';
+    btn.textContent = player || 'Flash'; //fix later
   };
   const updateText = () => {
-    const min = Math.floor(totalSeconds / 60);
-    const sec = totalSeconds % 60;
+    const min = Math.floor(remaining / 60);
+    const sec = remaining % 60;
     btn.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
   };
 
@@ -22,8 +24,8 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       return;
     }
 
-    totalSeconds = base * (100 / (100 + haste));
-    socket.emit('start-timer', { id, totalSeconds });
+    remaining = base * (100 / (100 + haste));
+    socket.emit('start-timer', { id, end: Date.now() + remaining * 1000 });
   });
 
   socket.on('reset-timer', (data) => {
@@ -33,11 +35,11 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   });
   socket.on('start-timer', (data) => {
     if (data.id === id) {
-      totalSeconds = data.totalSeconds;
+      remaining = (data.end - Date.now()) / 1000;
       updateText();
       timerInterval = setInterval(() => {
-        totalSeconds--;
-        if (totalSeconds <= 0) {
+        remaining--;
+        if (remaining <= 0) {
           reset();
         } else {
           updateText();
