@@ -24,7 +24,7 @@ io.on('connection', socket => {
 
   socket.on('start-timer', (data) => {
     console.log(data);
-    timers[data.id] = data.end;
+    timers.set(data.id, data.end);
     io.emit('start-timer', data);
   });
 
