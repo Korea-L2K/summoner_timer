@@ -14,8 +14,7 @@ let timers = new Map();
 io.on('connection', socket => {
   console.log('user connected');
   const now = Date.now();
-  for (const id in timers) {
-    const end = timers[id];
+  for (const [id, end] of timers) {
     if (now < end) {
       socket.emit('start-timer', { id, end });
     } else {
