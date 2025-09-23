@@ -79,7 +79,7 @@ body {
 }
 
 /* Optional: Add focus styles for accessibility */
-button:focus {
+/* button:focus {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
-}
+} */
