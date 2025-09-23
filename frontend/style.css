@@ -2,7 +2,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: #0b1a33;        /* deep dark blue background */
+  background: #0b1a33;
   color: #ffffff;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   display: flex;
@@ -14,7 +14,7 @@ body {
   width: 90%;
   height: 90%;
   display: flex;
-  flex-direction: column;     /* stack players vertically */
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
@@ -22,33 +22,35 @@ body {
 
 /* === Player Panels === */
 .player {
-  flex: 1;                    /* each takes equal vertical space */
+  flex: 1;
   width: 100%;
-  max-height: 20%;             /* ~20% of vertical space */
+  max-height: 20%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 1.5rem;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
   padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
 }
 
 .player:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* === Timer Buttons (D / F) === */
 .timer-button {
-  width: 80px;
-  height: 80px;
+  flex: 1;
+  aspect-ratio: 1;
+  width: auto;
+  height: auto;
   background: #1e3a5f;
   border: none;
   border-radius: 0.75rem;
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
@@ -62,18 +64,22 @@ body {
 /* === Toggle Buttons (Cosmic / Lucid) === */
 .toggles {
   display: flex;
-  flex-direction: column;      /* vertical alignment */
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0.5;
   gap: 0.5rem;
 }
 
 .toggle {
-  width: 40px;                 /* roughly half of timer size */
-  height: 40px;
+  flex: 1;
+  aspect-ratio: 1;
+  width: auto;
+  height: auto;
   background: #24476e;
   border: none;
   border-radius: 0.5rem;
   color: #ffffff;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;

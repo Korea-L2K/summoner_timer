@@ -1,5 +1,5 @@
 const playerContainer = document.getElementById('player-container');
-const players = ['top', 'jungle', 'mid'];
+const players = ['top', 'jungle', 'mid', 'adc', 'sup'];
 let cosmic = {}, lucidity = {};
 
 players.forEach((name, index) => {
