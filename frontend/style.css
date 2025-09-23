@@ -54,9 +54,9 @@ body {
   background: #2b4f7a;
   transform: translateY(-1px);
 }
-.timer-button:active {
-  outline: none;
-  box-shadow: none;
+.timer-button.dimmed {
+  opacity: 0.5;
+  filter: brightness(70%);
 }
 
 /* === Toggle Buttons (Cosmic / Lucidity) === */

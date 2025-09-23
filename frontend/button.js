@@ -15,7 +15,7 @@ let haste = {
   lucidity: { top: false, jg: false, mid: false, adc: false, sup: false }
 };
 function getHaste(player) {
-  return haste[cosmic][player] * 18 + haste[lucidity][player] * 10;
+  return (haste.cosmic[player] || 0) * 18 + (haste.lucidity[player] || 0) * 10;
 }
 
 document.querySelectorAll('.timer-button').forEach(btn => {
@@ -25,11 +25,13 @@ document.querySelectorAll('.timer-button').forEach(btn => {
     clearInterval(timerInterval);
     timerInterval = null;
     btn.textContent = spells[id.player][id.spell];
+    btn.classList.remove('dimmed');
   };
   const updateText = (remaining) => {
     const min = Math.floor(remaining / 60);
     const sec = Math.floor(remaining) % 60;
     btn.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+    btn.classList.add('dimmed');
   };
   reset();
 
@@ -69,6 +71,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
 document.querySelectorAll('.toggle').forEach(btn => {
   const id = { player: btn.dataset.player, source: btn.dataset.source };
+  btn.classList.add('dimmed');
   btn.addEventListener('click', () => {
     if (haste[id.source][id.player]) {
       socket.emit('toggle-off', { id });
