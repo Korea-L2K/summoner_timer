@@ -11,28 +11,24 @@ body {
 }
 
 #player-container {
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 /* === Player Panels === */
 .player {
   flex: 1;
-  width: 100%;
-  max-height: 20%;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
-  gap: 1.5rem;
+  align-items: stretch;
+  gap: 0.5rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
 }
@@ -43,13 +39,10 @@ body {
 
 /* === Timer Buttons (D / F) === */
 .timer-button {
-  flex: 0 1 auto;
   aspect-ratio: 1;
-  width: auto;
-  height: auto;
   background: #1e3a5f;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   color: #ffffff;
   font-size: 2rem;
   font-weight: 600;
@@ -59,24 +52,17 @@ body {
 
 .timer-button:hover {
   background: #2b4f7a;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 /* === Toggle Buttons (Cosmic / Lucid) === */
 .toggles {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 0.5;
-  height: 90%;
-  gap: 0.5rem;
+  display: grid;
+  gap: 0.25rem;
 }
 
 .toggle {
-  flex: 1;
   aspect-ratio: 1;
-  width: 100%;
-  height: auto;
   background: #24476e;
   border: none;
   border-radius: 0.5rem;
@@ -89,7 +75,7 @@ body {
 
 .toggle:hover {
   background: #2f5c91;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 /* Optional: Add focus styles for accessibility */
