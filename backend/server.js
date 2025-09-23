@@ -9,12 +9,14 @@ const io = new Server(server, {
   connectionStateRecovery: {}
 });
 
-let timers = {};
+let timers = new Map();
 
 io.on('connection', socket => {
   console.log('user connected');
-  for (const [id, end] of Object.entries(timers)) {
-    if (Date.now() < end) {
+  const now = Date.now();
+  for (const id in timers) {
+    const end = timers[id];
+    if (now < end) {
       socket.emit('start-timer', { id, end });
     } else {
       delete timers[id];
@@ -29,7 +31,7 @@ io.on('connection', socket => {
 
   socket.on('reset-timer', (data) => {
     console.log(data);
-    delete timers[id];
+    delete timers[data.id];
     io.emit('reset-timer', data);
   });
 
