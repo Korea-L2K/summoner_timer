@@ -38,10 +38,12 @@ io.on('connection', socket => {
   });
   
   socket.on('toggle-on', (data) => {
+    console.log(data + 'on');
     haste.add(data);
     io.emit('toggle-on', data);
   });
   socket.on('toggle-off', (data) => {
+    console.log(data + 'off');
     haste.delete(data);
     io.emit('toggle-off', data);
   });

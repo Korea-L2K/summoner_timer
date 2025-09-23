@@ -82,10 +82,6 @@ body {
   background: #2f5c91;
   transform: translateY(-1px);
 }
-.toggle:active {
-  outline: none;
-  box-shadow: none;
-}
 .toggle.dimmed {
   opacity: 0.5;
   filter: brightness(70%);

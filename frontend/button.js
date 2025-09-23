@@ -69,7 +69,6 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
 document.querySelectorAll('.toggle').forEach(btn => {
   const id = { player: btn.dataset.player, source: btn.dataset.source };
-  btn.classList.add('dimmed');
   btn.addEventListener('click', () => {
     if (haste[id.source][id.player]) {
       socket.emit('toggle-off', { id });
