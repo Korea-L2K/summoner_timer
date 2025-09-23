@@ -1,9 +1,9 @@
 const playerContainer = document.getElementById('player-container');
-const players = ['top', 'jungle'];
-let lucidity = {}, cosmic = {};
+const players = ['top', 'jungle', 'mid'];
+let cosmic = {}, lucidity = {};
 
 players.forEach((name, index) => {
-  lucidity[name] = false, cosmic[name] = false;
+  cosmic[name] = false, lucidity[name] = false;
   const player = document.createElement('div');
   player.className = 'player';
   player.dataset.player = name;

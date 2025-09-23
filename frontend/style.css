@@ -1,72 +1,91 @@
-✅ CSS
-/* Dark blue page background */
+/* === Global Page Setup === */
 body {
-  background-color: #0b1a3d;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
   margin: 0;
-  padding: 20px;
+  height: 100vh;
+  background: #0b1a33;        /* deep dark blue background */
+  color: #ffffff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-/* Player container: row layout */
-.player {
+#player-container {
+  width: 90%;
+  height: 90%;
   display: flex;
+  flex-direction: column;     /* stack players vertically */
   justify-content: space-between;
   align-items: center;
-  background: #1a1a2e;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  width: 450px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  gap: 1rem;
 }
 
-/* Timer buttons horizontally spaced */
-.timers {
+/* === Player Panels === */
+.player {
+  flex: 1;                    /* each takes equal vertical space */
+  width: 100%;
+  max-height: 20%;             /* ~20% of vertical space */
   display: flex;
-  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: background 0.3s ease;
 }
 
-/* Toggle buttons stacked vertically */
-.toggles {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.player:hover {
+  background: rgba(255,255,255,0.08);
 }
 
-/* Timer buttons style */
+/* === Timer Buttons (D / F) === */
 .timer-button {
   width: 80px;
   height: 80px;
-  font-size: 18px;
+  background: #1e3a5f;
   border: none;
-  border-radius: 12px;
-  background: #4a69bd;
-  color: white;
+  border-radius: 0.75rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
+
 .timer-button:hover {
-  background: #3b4f9e;
+  background: #2b4f7a;
   transform: translateY(-2px);
 }
 
-/* Toggle buttons style (smaller) */
-.toggle {
-  width: 50px;
-  height: 35px;
-  font-size: 14px;
-  border: none;
-  border-radius: 8px;
-  background: #60a3bc;
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+/* === Toggle Buttons (Cosmic / Lucid) === */
+.toggles {
+  display: flex;
+  flex-direction: column;      /* vertical alignment */
+  gap: 0.5rem;
 }
+
+.toggle {
+  width: 40px;                 /* roughly half of timer size */
+  height: 40px;
+  background: #24476e;
+  border: none;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
 .toggle:hover {
-  background: #3c8890;
-  transform: translateY(-1px);
+  background: #2f5c91;
+  transform: translateY(-2px);
+}
+
+/* Optional: Add focus styles for accessibility */
+button:focus {
+  outline: 2px solid #66aaff;
+  outline-offset: 2px;
 }
