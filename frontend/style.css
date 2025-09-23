@@ -86,3 +86,7 @@ body {
   outline: none;
   box-shadow: none;
 }
+.toggle.dimmed {
+  opacity: 0.5;
+  filter: brightness(70%);
+}

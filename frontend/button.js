@@ -1,6 +1,8 @@
-import { getHaste } from './player.js'
-
 const socket = window.socket;
+let info = {
+  flash: 300, teleport: 300, cleanse: 240, exhaust: 240, test: 7,
+  ghost: 240, heal: 240, barrier: 180, ignite: 180, smite: 15,
+}
 let spells = {
   top: { d: 'flash', f: 'teleport' },
   jg: { d: 'flash', f: 'smite' },
@@ -8,9 +10,12 @@ let spells = {
   adc: { d: 'flash', f: 'barrier' },
   sup: { d: 'flash', f: 'heal' },
 };
-let info = {
-  flash: 300, teleport: 300, cleanse: 240, exhaust: 240, test: 7,
-  ghost: 240, heal: 240, barrier: 180, ignite: 180, smite: 15,
+let haste = {
+  cosmic: { top: false, jg: false, mid: false, adc: false, sup: false },
+  lucidity: { top: false, jg: false, mid: false, adc: false, sup: false }
+};
+function getHaste(player) {
+  return haste[cosmic][player] * 18 + haste[lucidity][player] * 10;
 }
 
 document.querySelectorAll('.timer-button').forEach(btn => {
@@ -58,6 +63,31 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   socket.on('reset-timer', (data) => {
     if (data.id.player === id.player && data.id.spell === id.spell) {
       reset();
+    }
+  });
+});
+
+document.querySelectorAll('.toggle').forEach(btn => {
+  const id = { player: btn.dataset.player, source: btn.dataset.source };
+  btn.classList.add('dimmed');
+  btn.addEventListener('click', () => {
+    if (haste[id.source][id.player]) {
+      socket.emit('toggle-off', { id });
+    } else {
+      socket.emit('toggle-on', { id });
+    }
+  });
+
+  socket.on('toggle-off', (data) => {
+    if (data.id.player === id.player && data.id.source === id.source) {
+      haste[id.source][id.player] = false;
+      btn.classList.add('dimmed');
+    }
+  });
+  socket.on('toggle-on', (data) => {
+    if (data.id.player === id.player && data.id.source === id.source) {
+      haste[id.source][id.player] = true;
+      btn.classList.remove('dimmed');
     }
   });
 });

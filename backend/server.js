@@ -10,6 +10,7 @@ const io = new Server(server, {
 });
 
 let timers = new Map();
+let haste = new Set();
 
 io.on('connection', socket => {
   console.log('user connected');
@@ -21,17 +22,28 @@ io.on('connection', socket => {
       delete timers[id];
     }
   }
+  for (const id of haste) {
+    socket.emit('toggle-on', { id });
+  }
 
   socket.on('start-timer', (data) => {
-    console.log(data);
+    // console.log(data);
     timers.set(data.id, data.end);
     io.emit('start-timer', data);
   });
-
   socket.on('reset-timer', (data) => {
-    console.log(data);
+    // console.log(data);
     delete timers[data.id];
     io.emit('reset-timer', data);
+  });
+  
+  socket.on('toggle-on', (data) => {
+    haste.add(data);
+    io.emit('toggle-on', data);
+  });
+  socket.on('toggle-off', (data) => {
+    haste.delete(data);
+    io.emit('toggle-off', data);
   });
 
   socket.on('disconnect', () => {
