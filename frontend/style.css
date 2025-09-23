@@ -27,7 +27,8 @@ body {
   max-height: 20%;
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
+  position: relative;
   gap: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
@@ -42,7 +43,7 @@ body {
 
 /* === Timer Buttons (D / F) === */
 .timer-button {
-  flex: 1;
+  flex: 0 1 auto;
   aspect-ratio: 1;
   width: auto;
   height: auto;
@@ -67,13 +68,14 @@ body {
   flex-direction: column;
   justify-content: space-between;
   flex: 0.5;
+  height: 90%;
   gap: 0.5rem;
 }
 
 .toggle {
   flex: 1;
   aspect-ratio: 1;
-  width: auto;
+  width: 100%;
   height: auto;
   background: #24476e;
   border: none;
