@@ -2,11 +2,11 @@ import { getHaste } from './player.js'
 
 const socket = window.socket;
 let spells = {
-  top: { d: flash, f: teleport },
-  jg: { d: flash, f: smite },
-  mid: { d: flash, f: ignite },
-  adc: { d: flash, f: barrier },
-  sup: { d: flash, f: heal },
+  top: { d: 'flash', f: 'teleport' },
+  jg: { d: 'flash', f: 'smite' },
+  mid: { d: 'flash', f: 'ignite' },
+  adc: { d: 'flash', f: 'barrier' },
+  sup: { d: 'flash', f: 'heal' },
 };
 let info = {
   flash: 300, teleport: 300, cleanse: 240, exhaust: 240, test: 7,
