@@ -41,6 +41,8 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   });
 
   socket.on('start-timer', (data) => {
+    console.log(data.id);
+    console.log(id);
     if (data.id === id) {
       let remaining = (data.end - Date.now()) / 1000;
       console.log(remaining);

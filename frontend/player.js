@@ -2,7 +2,7 @@ const playerContainer = document.getElementById('player-container');
 const players = ['top', 'jg', 'mid', 'adc', 'sup'];
 let cosmic = {}, lucidity = {};
 
-players.forEach((name, index) => {
+players.forEach((name) => {
   cosmic[name] = false, lucidity[name] = false;
   const player = document.createElement('div');
   player.className = 'player';
