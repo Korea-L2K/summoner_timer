@@ -11,7 +11,7 @@ players.forEach((name) => {
     <button class="timer-button" data-player="${name}" data-spell="f"></button>
     <div class="toggles">
       <button class="toggle" data-player="${name}" data-source="cosmic"></button>
-      <button class="toggle" data-player="${name}" data-source="lucid"></button>
+      <button class="toggle" data-player="${name}" data-source="lucidity"></button>
     </div>
   `;
 
