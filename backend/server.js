@@ -22,11 +22,13 @@ io.on('connection', socket => {
   }
 
   socket.on('start-timer', (data) => {
+    console.log(data);
     timers[data.id] = data.end;
     io.emit('start-timer', data);
   });
 
   socket.on('reset-timer', (data) => {
+    console.log(data);
     delete timers[id];
     io.emit('reset-timer', data);
   });

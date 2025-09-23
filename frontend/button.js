@@ -13,8 +13,6 @@ let info = {
   ghost: 240, heal: 240, barrier: 180, ignite: 180, smite: 15,
 }
 
-// const lucidity = document.getElementById('lucidity');
-
 document.querySelectorAll('.timer-button').forEach(btn => {
   const id = { player: btn.dataset.player, spell: btn.dataset.spell };
   let timerInterval = null;
@@ -23,20 +21,22 @@ document.querySelectorAll('.timer-button').forEach(btn => {
     timerInterval = null;
     btn.textContent = spells[id.player][id.spell];
   };
-  reset();
   const updateText = (remaining) => {
     const min = Math.floor(remaining / 60);
     const sec = Math.floor(remaining) % 60;
     btn.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
   };
+  reset();
 
   btn.addEventListener('click', () => {
     if (timerInterval) {
       socket.emit('reset-timer', { id });
       return;
     }
+    console.log(id);
     let base = info[spells[id.player][id.spell]], haste = getHaste(id.player);
     let cooldown = base * (100 / (100 + haste));
+    console.log(cooldown);
     socket.emit('start-timer', { id, end: Date.now() + cooldown * 1000 });
   });
 

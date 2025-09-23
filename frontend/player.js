@@ -21,5 +21,5 @@ players.forEach((name, index) => {
 });
 
 export function getHaste(player) {
-  return lucidity[player] * 10 + cosmic[player] * 18;
+  return cosmic[player] * 18 + lucidity[player] * 10;
 }
