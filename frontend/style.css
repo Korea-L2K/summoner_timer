@@ -32,7 +32,6 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
 }
-
 .player:hover {
   background: rgba(255, 255, 255, 0.08);
 }
@@ -49,14 +48,12 @@ body {
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
-
 .timer-button:hover {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
   background: #2b4f7a;
   transform: translateY(-1px);
 }
-
 .timer-button:active {
   outline: none;
   box-shadow: none;
@@ -79,14 +76,12 @@ body {
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
-
 .toggle:hover {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
   background: #2f5c91;
   transform: translateY(-1px);
 }
-
 .toggle:active {
   outline: none;
   box-shadow: none;

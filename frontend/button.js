@@ -21,7 +21,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   const reset = () => {
     clearInterval(timerInterval);
     timerInterval = null;
-    btn.textContent = spells[id.player[id.spell]];
+    btn.textContent = spells[id.player][id.spell];
   };
   reset();
   const updateText = (remaining) => {
@@ -35,7 +35,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       socket.emit('reset-timer', { id });
       return;
     }
-    let base = info[spells[id.player[id.spell]]], haste = getHaste(id.player);
+    let base = info[spells[id.player][id.spell]], haste = getHaste(id.player);
     let cooldown = base * (100 / (100 + haste));
     socket.emit('start-timer', { id, end: Date.now() + cooldown * 1000 });
   });
