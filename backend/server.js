@@ -36,7 +36,7 @@ io.on('connection', socket => {
   });
   socket.on('reset-timer', (data) => {
     // console.log(data);
-    delete timers[key1(data.id)];
+    timers.delete(key1(data.id));
     io.emit('reset-timer', data);
   });
 
