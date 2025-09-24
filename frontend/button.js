@@ -20,11 +20,11 @@ function getHaste(player) {
 
 document.querySelectorAll('.timer-button').forEach(btn => {
   const id = { player: btn.dataset.player, spell: btn.dataset.spell };
-  btn.style.setProperty('--bg-image', `url("images/${spells[id.player][id.spell]}.png")`);
   let timerInterval = null;
   const reset = () => {
     clearInterval(timerInterval);
     timerInterval = null;
+    btn.style.setProperty('--bg-image', `url("images/${spells[id.player][id.spell]}.png")`);
     btn.querySelector('.text').textContent = ""; //spells[id.player][id.spell];
     btn.classList.remove('dimmed');
   };
@@ -48,7 +48,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
   socket.on('start-timer', (data) => {
     if (data.id.player === id.player && data.id.spell === id.spell) {
-      clearInterval(timerInterval);
+      reset();
       let remaining = (data.end - Date.now()) / 1000;
       updateText(remaining);
       timerInterval = setInterval(() => {
@@ -68,6 +68,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
     }
   });
   socket.on('set-spell', (data) => {
+    console.log(data);
     if (data.id.player === id.player && data.id.spell === id.spell) {
       spells[id.player][id.spell] = data.spell;
       reset();
