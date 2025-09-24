@@ -18,14 +18,14 @@ function key2(obj) { return `${obj.player}:${obj.source}`; }
 
 io.on('connection', socket => {
   console.log('user connected');
-  const now = Date.now();
-  const update = null;
+  let update = null;
 
   for (const [, val] of spells) {
     socket.emit('set-spell', val);
   }
+  const init = Date.now();
   for (const [key, val] of timers) {
-    if (now < val.end) {
+    if (init < val.end) {
       socket.emit('start-timer', val);
     } else {
       timers.delete(key);
