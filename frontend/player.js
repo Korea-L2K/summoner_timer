@@ -5,11 +5,13 @@ const summs = ['barrier', 'cleanse', 'exhaust', 'flash', 'ghost', 'heal', 'ignit
 function createTimerButton(name, spell) {
   return `
   <button class="timer-button" data-player="${name}" data-spell="${spell}">
-    <div class="edit-button" role="button" tabindex="0">⋮</div>
+    <span class="text"></span>
+    <div class="edit-button" tabindex="0">⋮</div>
     <div class="spell-menu hidden">
-      ${summs.map(s => `<button class="spell-option" data-spell="${s}"></button>`).join('')}
+      ${summs.map(s => `<div class="spell-option" data-spell="${s}" style="background-image: url('images/${s}.png')"></div>`).join('')}
     </div>
-  </button>`;
+  </button>
+  `;
 }
 
 players.forEach((name) => {

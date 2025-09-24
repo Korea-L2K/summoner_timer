@@ -11,7 +11,7 @@ let spells = {
   sup: { d: 'flash', f: 'heal' },
 };
 let haste = {
-  cosmic: { top: false, jg: false, mid: false, adc: false, sup: false },
+  cosmic: { top: false, jg: true, mid: false, adc: false, sup: true },
   lucidity: { top: false, jg: false, mid: false, adc: false, sup: false }
 };
 function getHaste(player) {
@@ -25,13 +25,13 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   const reset = () => {
     clearInterval(timerInterval);
     timerInterval = null;
-    btn.textContent = ""; //spells[id.player][id.spell];
+    btn.querySelector('.text').textContent = ""; //spells[id.player][id.spell];
     btn.classList.remove('dimmed');
   };
   const updateText = (remaining) => {
     const min = Math.floor(remaining / 60);
     const sec = Math.floor(remaining) % 60;
-    btn.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+    btn.querySelector('.text').textContent = `${min}:${sec.toString().padStart(2, '0')}`;
     btn.classList.add('dimmed');
   };
   reset();
@@ -41,10 +41,8 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       socket.emit('reset-timer', { id });
       return;
     }
-    console.log(id);
     let base = info[spells[id.player][id.spell]], haste = getHaste(id.player);
     let cooldown = base * (100 / (100 + haste));
-    console.log(cooldown);
     socket.emit('start-timer', { id, end: Date.now() + cooldown * 1000 });
   });
 
@@ -76,26 +74,10 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   });
 });
 
-document.addEventListener('click', e => {
-  if (e.target.classList.contains('edit-button')) {
-    e.stopPropagation();
-    const menu = e.target.nextElementSibling;
-    menu.classList.remove('hidden');
-  }
-  if (e.target.classList.contains('spell-option')) {
-    e.stopPropagation();
-    const spell = e.target.dataset.spell;
-    const timer = e.target.closest('.timer-button');
-    socket.emit('set-spell', { id: {player: timer.dataset.player, spell: timer.dataset.spell} , spell });
-    e.target.closest('.spell-menu').classList.add('hidden');
-    return;
-  }
-});
-
 document.querySelectorAll('.toggle').forEach(btn => {
   const id = { player: btn.dataset.player, source: btn.dataset.source };
   btn.style.backgroundImage = `url('images/${id.source}.png')`;
-  btn.classList.add('dimmed');
+  if (!haste[id.source][id.player]) btn.classList.add('dimmed');
   btn.addEventListener('click', () => {
     if (haste[id.source][id.player]) {
       socket.emit('toggle-off', { id });
@@ -117,3 +99,30 @@ document.querySelectorAll('.toggle').forEach(btn => {
     }
   });
 });
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.spell-menu')) {
+    document.querySelectorAll('.spell-menu:not(.hidden)').forEach(menu => menu.classList.add('hidden'));
+  }
+  if (e.target.classList.contains('edit-button')) {
+    e.stopPropagation();
+    const menu = e.target.nextElementSibling;
+    menu.classList.remove('hidden');
+    const rect = menu.getBoundingClientRect();
+    if (rect.top < 0) {
+      menu.style.bottom = 'auto';
+      menu.style.top = '0';
+    }
+  }
+  else if (e.target.classList.contains('spell-option')) {
+    e.stopPropagation();
+    const spell = e.target.dataset.spell;
+    const timer = e.target.closest('.timer-button');
+    const id = { player: timer.dataset.player, spell: timer.dataset.spell };
+    if (spells[timer.player][timer.spell] != spell) {
+      socket.emit('set-spell', { id, spell });
+    }
+    e.target.closest('.spell-menu').classList.add('hidden');
+  }
+});
+
