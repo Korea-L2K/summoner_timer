@@ -68,6 +68,28 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       reset();
     }
   });
+  socket.on('set-spell', (data) => {
+    if (data.id.player === id.player && data.id.spell === id.spell) {
+      spells[id.player][id.spell] = data.spell;
+      reset();
+    }
+  });
+});
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('edit-button')) {
+    e.stopPropagation();
+    const menu = e.target.nextElementSibling;
+    menu.classList.remove('hidden');
+  }
+  if (e.target.classList.contains('spell-option')) {
+    e.stopPropagation();
+    const spell = e.target.dataset.spell;
+    const timer = e.target.closest('.timer-button');
+    socket.emit('set-spell', { id: {player: timer.dataset.player, spell: timer.dataset.spell} , spell });
+    e.target.closest('.spell-menu').classList.add('hidden');
+    return;
+  }
 });
 
 document.querySelectorAll('.toggle').forEach(btn => {

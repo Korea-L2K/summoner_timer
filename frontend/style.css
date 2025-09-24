@@ -32,12 +32,11 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
 }
-
 .player:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* === Timer Buttons (D / F) === */
+/* === Timer Buttons === */
 .timer-button {
   aspect-ratio: 1;
   /* background: #1e3a5f; */
@@ -45,7 +44,7 @@ body {
   border-radius: 1rem;
   color: #ffffff;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 1000;
   text-shadow:
      1px 1px 0 black,
     -1px 1px 0 black,
@@ -59,13 +58,11 @@ body {
   background: transparent;
   position: relative;
 }
-
 .timer-button:hover {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
   transform: translateY(-1px);
 }
-
 .timer-button::before {
   border-radius: 1rem;
   content: '';
@@ -78,18 +75,59 @@ body {
   background-size: cover;
   z-index: -1;
 }
-
 .timer-button.dimmed::before {
   opacity: 0.4;
 }
 
+.edit-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.spell-menu {
+  position: absolute;
+  top: 0%;
+  right: 0;
+  background: #1e3a5f;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.spell-menu.hidden {
+  display: none;
+}
+.spell-option {
+  background: #2b4f7a;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.spell-option:hover {
+  background: #3a65a0;
+}
 
 /* === Toggle Buttons (Cosmic / Lucidity) === */
 .toggles {
   display: grid;
   gap: 0.25rem;
 }
-
 .toggle {
   aspect-ratio: 1;
   background: #24476e;
@@ -101,14 +139,12 @@ body {
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
-
 .toggle:hover {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
   background: #2f5c91;
   transform: translateY(-1px);
 }
-
 .toggle.dimmed {
   opacity: 0.5;
   filter: brightness(70%);
