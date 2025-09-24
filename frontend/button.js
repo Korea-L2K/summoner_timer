@@ -53,11 +53,10 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       let remaining = (data.end - Date.now()) / 1000;
       updateText(remaining);
       timerInterval = setInterval(() => {
-        remaining--;
+        remaining = (data.end - Date.now()) / 1000;
         if (remaining < 0.5) {
           reset();
         } else {
-          console.log(data.end - Date.now() - 1000 * remaining);
           updateText(remaining);
         }
       }, 1000);
@@ -112,8 +111,12 @@ document.addEventListener('click', e => {
     menu.classList.remove('hidden');
     const rect = menu.getBoundingClientRect();
     if (rect.top < 0) {
-      menu.style.bottom = 'auto';
       menu.style.top = '0';
+      menu.style.bottom = 'auto';
+    }
+    if (rect.left < 0) {
+      menu.style.left = '0';
+      menu.style.right = 'auto';
     }
   }
   else if (e.target.classList.contains('spell-option')) {
