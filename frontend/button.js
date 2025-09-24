@@ -29,6 +29,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
     btn.classList.remove('dimmed');
   };
   const updateText = (remaining) => {
+    remaining = Math.round(remaining);
     const min = Math.floor(remaining / 60);
     const sec = Math.floor(remaining) % 60;
     btn.querySelector('.text').textContent = `${min}:${sec.toString().padStart(2, '0')}`;
@@ -53,7 +54,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
       updateText(remaining);
       timerInterval = setInterval(() => {
         remaining--;
-        if (remaining < 1) {
+        if (remaining < 0.5) {
           reset();
         } else {
           console.log(data.end - Date.now() - 1000 * remaining);

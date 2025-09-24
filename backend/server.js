@@ -40,7 +40,10 @@ io.on('connection', socket => {
     if (!update) {
       update = setInterval(() => {
         const now = Date.now();
-        if (timers.size === 0) clearInterval(update);
+        if (timers.size === 0) {
+          clearInterval(update);
+          update = null;
+        }
         for (const [key, val] of timers) {
           if (now < val.end) {
             io.emit('start-timer', val);
