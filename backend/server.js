@@ -43,6 +43,7 @@ io.on('connection', socket => {
   });
 
   socket.on('set-spell', (data) => {
+    console.log(data);
     spells.set(key1(data.id), data);
     timers.delete(key1(data.id));
     io.emit('set-spell', data);

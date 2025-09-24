@@ -49,7 +49,6 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   socket.on('start-timer', (data) => {
     if (data.id.player === id.player && data.id.spell === id.spell) {
       let remaining = (data.end - Date.now()) / 1000;
-      console.log(remaining);
       updateText(remaining);
       timerInterval = setInterval(() => {
         remaining--;
