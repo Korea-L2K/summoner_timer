@@ -32,6 +32,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
 }
+
 .player:hover {
   background: rgba(255, 255, 255, 0.08);
 }
@@ -39,25 +40,49 @@ body {
 /* === Timer Buttons (D / F) === */
 .timer-button {
   aspect-ratio: 1;
-  background: #1e3a5f;
+  /* background: #1e3a5f; */
   border: none;
   border-radius: 1rem;
   color: #ffffff;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 700;
+  text-shadow:
+     1px 1px 0 black,
+    -1px 1px 0 black,
+     1px -1px 0 black,
+    -1px -1px 0 black,
+     0px 1px 0 black,
+     1px 0px 0 black,
+     0px -1px 0 black,
+    -1px 0px 0 black;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  background: transparent;
+  position: relative;
 }
+
 .timer-button:hover {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
-  background: #2b4f7a;
   transform: translateY(-1px);
 }
-.timer-button.dimmed {
-  opacity: 0.5;
-  filter: brightness(70%);
+
+.timer-button::before {
+  border-radius: 1rem;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  z-index: -1;
 }
+
+.timer-button.dimmed::before {
+  opacity: 0.4;
+}
+
 
 /* === Toggle Buttons (Cosmic / Lucidity) === */
 .toggles {
@@ -76,12 +101,14 @@ body {
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
+
 .toggle:hover {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
   background: #2f5c91;
   transform: translateY(-1px);
 }
+
 .toggle.dimmed {
   opacity: 0.5;
   filter: brightness(70%);

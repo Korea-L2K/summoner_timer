@@ -20,11 +20,12 @@ function getHaste(player) {
 
 document.querySelectorAll('.timer-button').forEach(btn => {
   const id = { player: btn.dataset.player, spell: btn.dataset.spell };
+  btn.style.setProperty('--bg-image', `url("images/${spells[id.player][id.spell]}.png")`);
   let timerInterval = null;
   const reset = () => {
     clearInterval(timerInterval);
     timerInterval = null;
-    btn.textContent = spells[id.player][id.spell];
+    // btn.textContent = spells[id.player][id.spell];
     btn.classList.remove('dimmed');
   };
   const updateText = (remaining) => {
@@ -71,6 +72,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
 
 document.querySelectorAll('.toggle').forEach(btn => {
   const id = { player: btn.dataset.player, source: btn.dataset.source };
+  btn.style.backgroundImage = `url('images/${id.source}.png')`;
   btn.classList.add('dimmed');
   btn.addEventListener('click', () => {
     if (haste[id.source][id.player]) {
