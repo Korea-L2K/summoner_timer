@@ -25,7 +25,7 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   const reset = () => {
     clearInterval(timerInterval);
     timerInterval = null;
-    // btn.textContent = spells[id.player][id.spell];
+    btn.textContent = ""; //spells[id.player][id.spell];
     btn.classList.remove('dimmed');
   };
   const updateText = (remaining) => {
