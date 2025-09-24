@@ -48,7 +48,7 @@ io.on('connection', socket => {
             timers.delete(key);
           }
         }
-      }, 10000);
+      }, 30000);
     }
     io.emit('start-timer', data);
   });
