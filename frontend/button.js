@@ -19,25 +19,26 @@ function getHaste(player) {
 }
 
 document.querySelectorAll('.timer-button').forEach(btn => {
-  const id = { player: btn.dataset.player, spell: btn.dataset.spell };
+  const id = { player: btn.parentElement.dataset.player, spell: btn.parentElement.dataset.spell };
   let timerInterval = null;
   const reset = () => {
     clearInterval(timerInterval);
     timerInterval = null;
     btn.style.setProperty('--bg-image', `url("images/${spells[id.player][id.spell]}.png")`);
-    btn.querySelector('.text').textContent = ""; //spells[id.player][id.spell];
+    btn.textContent = ""; //spells[id.player][id.spell];
     btn.classList.remove('dimmed');
   };
   const updateText = (remaining) => {
     remaining = Math.round(remaining);
     const min = Math.floor(remaining / 60);
     const sec = Math.floor(remaining) % 60;
-    btn.querySelector('.text').textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+    btn.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
     btn.classList.add('dimmed');
   };
   reset();
 
   btn.addEventListener('click', () => {
+    console.log('test');
     if (timerInterval) {
       socket.emit('reset-timer', { id });
       return;
@@ -69,7 +70,6 @@ document.querySelectorAll('.timer-button').forEach(btn => {
     }
   });
   socket.on('set-spell', (data) => {
-    console.log(data);
     if (data.id.player === id.player && data.id.spell === id.spell) {
       spells[id.player][id.spell] = data.spell;
       reset();
@@ -110,7 +110,7 @@ document.addEventListener('click', e => {
   }
   if (e.target.classList.contains('edit-button')) {
     console.log('edit');
-    e.stopPropagation();
+    e.preventDefault();
     const menu = e.target.nextElementSibling;
     menu.classList.remove('hidden');
     const rect = menu.getBoundingClientRect();

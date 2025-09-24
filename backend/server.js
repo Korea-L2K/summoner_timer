@@ -60,19 +60,16 @@ io.on('connection', socket => {
     io.emit('reset-timer', data);
   });
   socket.on('set-spell', (data) => {
-    console.log(data);
     spells.set(key1(data.id), data);
     timers.delete(key1(data.id));
     io.emit('set-spell', data);
   });
 
   socket.on('toggle-on', (data) => {
-    console.log(data + 'on');
     haste.set(key2(data.id), data);
     io.emit('toggle-on', data);
   });
   socket.on('toggle-off', (data) => {
-    console.log(data + 'off');
     haste.delete(key2(data.id));
     io.emit('toggle-off', data);
   });

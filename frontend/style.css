@@ -37,7 +37,10 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* === Timer Buttons === */
+.timer {
+  position: relative;
+  display: inline-flex;
+}
 .timer-button {
   aspect-ratio: 1;
   border: none;
@@ -63,7 +66,6 @@ body {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
   transform: translateY(-1px);
-  z-index: 1;
 }
 
 .timer-button::before {
@@ -121,10 +123,6 @@ body {
   display: none;
 }
 
-.spell-menu:hover {
-  transform: translateY(1px);
-}
-
 .spell-option {
   aspect-ratio: 1;
   width: 100%;
@@ -137,6 +135,11 @@ body {
   cursor: pointer;
 }
 
+.spell-option:hover {
+  outline: 2px solid #66aaff;
+  outline-offset: 1px;
+  background-size: cover;
+}
 
 /* === Toggle Buttons (Cosmic / Lucidity) === */
 .toggles {
@@ -161,7 +164,7 @@ body {
   outline: 2px solid #66aaff;
   outline-offset: 2px;
   background: #2f5c91;
-  transform: translateY(-1px);
+  transform: translateY(-0.5px);
   background-size: cover;
 }
 
