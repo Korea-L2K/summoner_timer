@@ -148,6 +148,7 @@ body {
 }
 
 .toggle {
+  height: 100%;
   aspect-ratio: 1;
   background: #24476e;
   border: none;
