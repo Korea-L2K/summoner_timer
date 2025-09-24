@@ -19,6 +19,8 @@ function key2(obj) { return `${obj.player}:${obj.source}`; }
 io.on('connection', socket => {
   console.log('user connected');
   const now = Date.now();
+  const update = null;
+
   for (const [, val] of spells) {
     socket.emit('set-spell', val);
   }
@@ -35,13 +37,25 @@ io.on('connection', socket => {
 
   socket.on('start-timer', (data) => {
     timers.set(key1(data.id), data);
+    if (!update) {
+      update = setInterval(() => {
+        const now = Date.now();
+        if (timers.size === 0) clearInterval(update);
+        for (const [key, val] of timers) {
+          if (now < val.end) {
+            io.emit('start-timer', val);
+          } else {
+            timers.delete(key);
+          }
+        }
+      }, 10000);
+    }
     io.emit('start-timer', data);
   });
   socket.on('reset-timer', (data) => {
     timers.delete(key1(data.id));
     io.emit('reset-timer', data);
   });
-
   socket.on('set-spell', (data) => {
     console.log(data);
     spells.set(key1(data.id), data);
