@@ -51,7 +51,7 @@ io.on('connection', socket => {
             timers.delete(key);
           }
         }
-      }, 30000);
+      }, 60000);
     }
     io.emit('start-timer', data);
   });

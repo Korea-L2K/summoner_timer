@@ -38,7 +38,6 @@ document.querySelectorAll('.timer-button').forEach(btn => {
   reset();
 
   btn.addEventListener('click', () => {
-    console.log('test');
     if (timerInterval) {
       socket.emit('reset-timer', { id });
       return;
@@ -105,11 +104,9 @@ document.querySelectorAll('.toggle').forEach(btn => {
 
 document.addEventListener('click', e => {
   if (!e.target.closest('.spell-menu')) {
-    console.log('close');
     document.querySelectorAll('.spell-menu:not(.hidden)').forEach(menu => menu.classList.add('hidden'));
   }
   if (e.target.classList.contains('edit-button')) {
-    console.log('edit');
     e.preventDefault();
     const menu = e.target.nextElementSibling;
     menu.classList.remove('hidden');
@@ -120,10 +117,9 @@ document.addEventListener('click', e => {
     }
   }
   else if (e.target.classList.contains('spell-option')) {
-    console.log('spell');
     e.stopPropagation();
     const spell = e.target.dataset.spell;
-    const timer = e.target.closest('.timer-button');
+    const timer = e.target.closest('.timer');
     const id = { player: timer.dataset.player, spell: timer.dataset.spell };
     if (spells[id.player][id.spell] != spell) {
       socket.emit('set-spell', { id, spell });
