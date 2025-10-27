@@ -5,7 +5,12 @@ import { Server } from 'socket.io';
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { origin: ['https://summoner-timer.vercel.app', 'http://localhost:8080', 'http://127.0.0.1:8080'] },
+  cors: {
+    origin: process.env.NODE_ENV === 'production'
+      ? ['https://summoner-timer.vercel.app']
+      : ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:5500', 'http://127.0.0.1:5500'],
+    credentials: true
+  },
   connectionStateRecovery: {}
 });
 
