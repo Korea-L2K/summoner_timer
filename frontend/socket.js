@@ -1,1 +1,1 @@
-window.socket = io('https://summoner-timer.onrender.com');
+window.socket = io('http://localhost:3000');

@@ -20,6 +20,13 @@ players.forEach((name) => {
   player.dataset.player = name;
 
   player.innerHTML = `
+    <div class="ult-controls">
+      <button class="champion-select" data-player="${name}">Select</button>
+      <button class="level-toggle" data-player="${name}">6</button>
+    </div>
+    <div class="ultimate-timer" data-player="${name}">
+      <button class="ultimate-timer-button">R</button>
+    </div>
     ${createTimerButton(name, 'd')}
     ${createTimerButton(name, 'f')}
     <div class="toggles">

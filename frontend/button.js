@@ -14,6 +14,8 @@ let haste = {
   cosmic: { top: false, jg: true, mid: false, adc: false, sup: true },
   lucidity: { top: false, jg: false, mid: false, adc: false, sup: false }
 };
+// Expose haste globally for ultimate.js
+window.haste = haste;
 function getHaste(player) {
   return (haste.cosmic[player] || 0) * 18 + (haste.lucidity[player] || 0) * 10;
 }
